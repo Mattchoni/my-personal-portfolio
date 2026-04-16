@@ -1,19 +1,54 @@
 import { Button } from "@/components/Button";
 import { Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 
 const navLinks = [
-  { href: "/#about", label: "About" },
-  { href: "/#projects", label: "Projects" },
+  { href: "#about", label: "About" },
+  { href: "#projects", label: "Projects" },
   // { href: "/projects", label: "All Projects" },
-  { href: "/#experience", label: "Experience" },
-  { href: "/#testimonials", label: "Testimonials" },
+  { href: "#experience", label: "Experience" },
+  { href: "#testimonials", label: "Testimonials" },
 ];
 
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToSection = (hash) => {
+    const sectionId = hash.replace("#", "");
+    const target = document.getElementById(sectionId);
+
+    if (!target) {
+      return;
+    }
+
+    if (window.__lenis) {
+      window.__lenis.scrollTo(target, {
+        offset: -100,
+        duration: 1.1,
+      });
+      return;
+    }
+
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const handleNavClick = (event, hash) => {
+    event.preventDefault();
+    setIsMobileMenuOpen(false);
+
+    if (location.pathname !== "/") {
+      navigate(`/${hash}`);
+      return;
+    }
+
+    window.history.replaceState(null, "", `/${hash}`);
+    scrollToSection(hash);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,6 +59,16 @@ export const Navbar = () => {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (location.pathname !== "/" || !location.hash) {
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      scrollToSection(location.hash);
+    });
+  }, [location.pathname, location.hash]);
 
   return (
     <header
@@ -46,6 +91,7 @@ export const Navbar = () => {
               <a
                 href={link.href}
                 key={index}
+                onClick={(event) => handleNavClick(event, link.href)}
                 className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground rounded-full hover:bg-surface"
               >
                 {link.label}
@@ -76,7 +122,7 @@ export const Navbar = () => {
               <a
                 href={link.href}
                 key={index}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={(event) => handleNavClick(event, link.href)}
                 className="text-lg text-muted-foreground hover:text-foreground py-2"
               >
                 {link.label}

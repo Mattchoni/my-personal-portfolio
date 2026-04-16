@@ -1,37 +1,54 @@
 import { ArrowUpRight } from "lucide-react";
 import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
+import { Link } from "react-router-dom";
 const projects = [
   {
+    slug: "fitquest",
     title: "Fitquest",
     description:
       "Mobile Based Gamified Fitness Application.",
-    image: "/projects/Fitquest.jpg",
-    tags: ["Software Engineering Project", "Figma", "2025"],
-    status: "Completed",
+    image: "/projects/Fitquest1.png",
+    tags: ["Software Engineering Project", "Figma", "2024"],
+    year: "2025",
+    role: "UI/UX Designer",
+    category: "Mobile Application",
+    // caseStudy: "Fitquest is a gamified fitness application designed to make fitness engaging and fun. The app combines game mechanics with fitness tracking to motivate users to achieve their health goals.",
   },
   {
+    slug: "moonlight",
     title: "Moonlight",
     description:
-      "Mobile Solution for Ensuring Women’s Protection at Late Hours.",
+      "Mobile Solution for Ensuring Women's Protection at Late Hours.",
     image: "/projects/Moonlight.jpg",
-    tags: ["Software Engineering Project", "Figma", "2024"],
-    status: "Completed",
+    tags: ["Software Engineering Project", "Figma", "2023"],
+    year: "2024",
+    role: "Lead Designer",
+    category: "Mobile Application",
+    // caseStudy: "Moonlight is a safety application designed to protect women during late hours. Features include emergency alerts, location sharing, and panic buttons.",
   },
   {
-    title: "Camaligan",
+    slug: "camaligan",
+    title: "Treasury System",
     description:
-      "Camaligan Official Website.",
-    image: "/projects/Camaligan.svg",
+      "LGU Real Property Tax System",
+    image: "/projects/Camaligan1.png",
     tags: ["OJT", "Figma", "2025"],
-    status: "Completed",
+    year: "2025",
+    role: "Full Stack Developer",
+    category: "Web Application",
+    // caseStudy: "During my OJT, I developed the Camaligan official website showcasing company services and information.",
   },
   {
+    slug: "holotype",
     title: "Holotype",
     description:
       "A virtual keyboard for persons with motor skills difficulties.",
     image: "/projects/Holotype.svg",
     tags: ["Thesis", "Figma", "2025"],
-    status: "Completed",
+    year: "2025",
+    role: "Lead Developer & Researcher",
+    category: "Assistive Technology",
+    // caseStudy: "My thesis project - a virtual keyboard for people with motor skills difficulties, involving extensive research and user testing.",
   },
 ];
 
@@ -68,9 +85,15 @@ export const Projects = () => {
           {projects.map((project, idx) => (
             <div
               key={idx}
-              className="group glass rounded-2xl overflow-hidden animate-fade-in md:row-span-1"
+              className="group relative glass rounded-2xl overflow-hidden animate-fade-in md:row-span-1"
               style={{ animationDelay: `${(idx + 1) * 100}ms` }}
             >
+              <Link
+                to={`/project/${project.slug}`}
+                aria-label={`View ${project.title} project details`}
+                className="absolute inset-0 z-10 rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+              />
+
               {/* Image */}
               <div className="relative overflow-hidden aspect-video">
                 <img
@@ -83,21 +106,17 @@ export const Projects = () => {
                 bg-linear-to-t from-card via-card/50
                  to-transparent opacity-60"
                 />
-                {/* Overlay Links/ Buttons */}
-                {/* <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <a
-                    href={project.link}
-                    className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all"
-                  >
-                    <ArrowUpRight className="w-5 h-5" />
-                  </a>
-                  <a
-                    href={project.github}
-                    className="p-3 rounded-full glass hover:bg-primary hover:text-primary-foreground transition-all"
-                  >
-                    <GitBranch className="w-5 h-5" />
-                  </a>
-                </div> */}
+                {/* Mobile/Desktop Click Cue */}
+                <div className="absolute top-3 right-3 z-20 pointer-events-none">
+                  <div className="p-2.5 rounded-full glass text-primary opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 md:translate-y-1 md:group-hover:translate-y-0">
+                    <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5" />
+                  </div>
+                </div>
+                <div className="absolute bottom-3 left-3 z-20 pointer-events-none md:hidden">
+                  <span className="px-2.5 py-1 rounded-full glass text-[11px] tracking-wide uppercase text-secondary-foreground">
+                    Tap to view
+                  </span>
+                </div>
 
               </div>
 
@@ -135,12 +154,12 @@ export const Projects = () => {
         </div>
 
         {/* View All CTA */}
-        <div className="text-center mt-12 animate-fade-in animation-delay-500">
+        {/* <div className="text-center mt-12 animate-fade-in animation-delay-500">
           <AnimatedBorderButton onClick={handleViewAllProjects} aria-label="View all projects">
             View All Projects
             <ArrowUpRight className="w-5 h-5" />
           </AnimatedBorderButton>
-        </div>
+        </div> */}
       </div>
     </section>
   );
