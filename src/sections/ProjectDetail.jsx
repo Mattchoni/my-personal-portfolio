@@ -235,7 +235,7 @@ export const ProjectDetail = () => {
             <h2 className="text-3xl font-bold mb-6 text-secondary-foreground">
               Project Overview
             </h2>
-            <p className="text-muted-foreground leading-relaxed text-lg mb-6">
+            <p className="text-muted-foreground leading-relaxed text-lg mb-6 text-justify">
               {project.caseStudy}
             </p>
 
@@ -243,7 +243,7 @@ export const ProjectDetail = () => {
               <h3 className="text-2xl font-bold mb-4 text-secondary-foreground">
                 User Problem
               </h3>
-              <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
+              <p className="text-muted-foreground leading-relaxed text-base md:text-lg text-justify">
                 {project.userProblem}
               </p>
             </div>
@@ -256,7 +256,7 @@ export const ProjectDetail = () => {
                 {project.solutionProcess.map((step, index) => (
                   <li key={index} className="flex gap-3">
                     <span className="text-primary mt-1">0{index + 1}</span>
-                    <span className="leading-relaxed">{step}</span>
+                    <span className="leading-relaxed text-justify">{step}</span>
                   </li>
                 ))}
               </ul>
@@ -266,7 +266,7 @@ export const ProjectDetail = () => {
               <h3 className="text-2xl font-bold mb-4 text-secondary-foreground">
                 Result and Impact
               </h3>
-              <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
+              <p className="text-muted-foreground leading-relaxed text-base md:text-lg text-justify">
                 {project.resultImpact}
               </p>
             </div>
