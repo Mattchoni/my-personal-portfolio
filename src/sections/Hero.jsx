@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Button } from "@/components/Button";
 import {
   ArrowRight,
@@ -9,7 +8,6 @@ import {
   Download,
   ThumbsUp,
   Mail,
-  Eye
 } from "lucide-react";
 import { AnimatedBorderButton } from "../components/AnimatedBorderButton";
 
@@ -25,61 +23,6 @@ const skills = [
 ];
 
 export const Hero = () => {
-  const [viewCount, setViewCount] = useState(null);
-
-  useEffect(() => {
-    const VIEWS_NAMESPACE = "john-matthew-lirio-portfolio";
-    const hostKey = window.location.hostname
-      .replace(/[^a-zA-Z0-9-]/g, "-")
-      .toLowerCase();
-    const VIEWS_KEY = `${hostKey}-views`;
-    const STORAGE_KEY = "portfolio:last-view-hit";
-    const COUNT_COOLDOWN_MS = 24 * 60 * 60 * 1000;
-
-    const getShouldIncrement = () => {
-      try {
-        const lastHitRaw = localStorage.getItem(STORAGE_KEY);
-        const lastHit = lastHitRaw ? Number(lastHitRaw) : 0;
-
-        if (!lastHit || Number.isNaN(lastHit)) {
-          localStorage.setItem(STORAGE_KEY, String(Date.now()));
-          return true;
-        }
-
-        const shouldIncrement = Date.now() - lastHit > COUNT_COOLDOWN_MS;
-        if (shouldIncrement) {
-          localStorage.setItem(STORAGE_KEY, String(Date.now()));
-        }
-
-        return shouldIncrement;
-      } catch {
-        // If storage is blocked, only read count and avoid incrementing.
-        return false;
-      }
-    };
-
-    const loadViews = async () => {
-      try {
-        const shouldIncrement = getShouldIncrement() && !navigator.webdriver;
-        const action = shouldIncrement ? "hit" : "get";
-        const response = await fetch(
-          `https://api.countapi.xyz/${action}/${VIEWS_NAMESPACE}/${VIEWS_KEY}`
-        );
-
-        if (!response.ok) {
-          throw new Error("Failed to load view count");
-        }
-
-        const data = await response.json();
-        setViewCount(typeof data?.value === "number" ? data.value : null);
-      } catch {
-        setViewCount(null);
-      }
-    };
-
-    loadViews();
-  }, []);
-
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Bg */}
@@ -200,20 +143,6 @@ export const Hero = () => {
                   </div>
                 </div>
 
-                {/* Views Badge */}
-                <div className="absolute top-1/2 -right-5 -translate-y-1/2 glass rounded-xl px-3 py-2 animate-float animation-delay-200">
-                  <div className="flex items-center gap-2">
-                    <Eye className="w-4 h-4 text-primary" />
-                    <div>
-                      <div className="text-sm font-semibold leading-none">
-                        {viewCount !== null ? viewCount.toLocaleString() : "--"}
-                      </div>
-                      <div className="text-[10px] text-muted-foreground uppercase tracking-wide">
-                        Views
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
