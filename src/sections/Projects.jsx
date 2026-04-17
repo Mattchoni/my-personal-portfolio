@@ -7,7 +7,7 @@ const projects = [
     title: "Fitquest",
     description:
       "Mobile Based Gamified Fitness Application.",
-    image: "/projects/Fitquest1.png",
+    image: "/projects/Fitquest/Fitquest1.png",
     tags: ["Software Engineering Project", "Figma", "2024"],
     year: "2025",
     role: "UI/UX Designer",
@@ -19,7 +19,7 @@ const projects = [
     title: "Moonlight",
     description:
       "Mobile Solution for Ensuring Women's Protection at Late Hours.",
-    image: "/projects/Moonlight.jpg",
+    image: "/projects/Moonlight/Moonlight.jpg",
     tags: ["Software Engineering Project", "Figma", "2023"],
     year: "2024",
     role: "Lead Designer",
@@ -31,7 +31,7 @@ const projects = [
     title: "Treasury System",
     description:
       "LGU Real Property Tax System",
-    image: "/projects/Camaligan1.png",
+    image: "/projects/Treasury/Camaligan1.png",
     tags: ["OJT", "Figma", "2025"],
     year: "2025",
     role: "Full Stack Developer",
@@ -43,7 +43,7 @@ const projects = [
     title: "Holotype",
     description:
       "A virtual keyboard for persons with motor skills difficulties.",
-    image: "/projects/Holotype.svg",
+    image: "/projects/Holotype/Holotype1.svg",
     tags: ["Thesis", "Figma", "2025"],
     year: "2025",
     role: "Lead Developer & Researcher",
