@@ -53,8 +53,8 @@ const projects = [
 ];
 
 export const Projects = () => {
-  const handleViewAllProjects = () => {
-    window.location.href = "/projects";
+  const handleViewPlayground = () => {
+    window.location.href = "/playground";
   };
 
   return (
@@ -155,8 +155,8 @@ export const Projects = () => {
 
         {/* View All CTA */}
         {/* <div className="text-center mt-12 animate-fade-in animation-delay-500">
-          <AnimatedBorderButton onClick={handleViewAllProjects} aria-label="View all projects">
-            View All Projects
+          <AnimatedBorderButton onClick={handleViewPlayground} aria-label="View Playground">
+            View Playground
             <ArrowUpRight className="w-5 h-5" />
           </AnimatedBorderButton>
         </div> */}

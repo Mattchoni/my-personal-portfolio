@@ -4,7 +4,7 @@ import { Navbar } from "@/layout/Navbar";
 import { Hero } from "@/sections/Hero";
 import { About } from "@/sections/About";
 import { Projects } from "@/sections/Projects";
-import { AllProjects } from "@/sections/AllProjects";
+import { Playground } from "@/sections/Playground";
 import { Experience } from "@/sections/Experience";
 import { Testimonials } from "@/sections/Testimonials";
 import { Contact } from "@/sections/Contact";
@@ -79,7 +79,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/projects" element={<AllProjects />} />
+          <Route path="/playground" element={<Playground />} />
           <Route path="/project/:slug" element={<ProjectDetail />} />
         </Routes>
       </main>

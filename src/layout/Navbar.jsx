@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 const navLinks = [
   { href: "#about", label: "About" },
   { href: "#projects", label: "Projects" },
-  // { href: "/projects", label: "All Projects" },
+  { href: "/playground", label: "Playground" },
   { href: "#experience", label: "Experience" },
   { href: "#testimonials", label: "Testimonials" },
 ];
@@ -40,6 +40,11 @@ export const Navbar = () => {
   const handleNavClick = (event, hash) => {
     event.preventDefault();
     setIsMobileMenuOpen(false);
+
+    if (hash.startsWith("/")) {
+      navigate(hash);
+      return;
+    }
 
     if (location.pathname !== "/") {
       navigate(`/${hash}`);
