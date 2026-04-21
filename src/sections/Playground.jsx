@@ -143,7 +143,7 @@ export const Playground = () => {
             My Playground
           </h2>
           <p className="text-muted-foreground animate-fade-in animation-delay-200">
-            Welcome to my playground a personal collection of random designs, creative explorations, and everything that didn’t quite fit anywhere else.
+            Welcome to my playground it's just a bunch of stuff I made—random designs, experiments, and ideas I wanted to explore.
           </p>
         </div>
 
